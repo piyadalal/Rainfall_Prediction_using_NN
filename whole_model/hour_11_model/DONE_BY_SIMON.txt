@@ -1,0 +1,4 @@
+DONE BY SIMON
+bin_nn accuracy:91.31%
+multi_nn accuracy:93.79%
+reg_nn MAE = 0.36mm

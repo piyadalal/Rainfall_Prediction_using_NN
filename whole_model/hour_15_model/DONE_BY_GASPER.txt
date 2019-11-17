@@ -1,0 +1,4 @@
+DONE_BY_GASPER
+bin_nn accuracy: above 92% 
+multi_nn accuracy: above 92%
+MAE: 0.4 mm

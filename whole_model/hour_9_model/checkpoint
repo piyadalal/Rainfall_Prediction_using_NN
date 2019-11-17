@@ -1,0 +1,2 @@
+model_checkpoint_path: "multi_model"
+all_model_checkpoint_paths: "multi_model"

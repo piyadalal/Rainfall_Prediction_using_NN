@@ -1,0 +1,4 @@
+DONE_BY_UROS
+bin_nn accuracy: above 92%
+multi_nn accuracy: above 93%
+reg_nn MAE = below 0.4 mm
