@@ -1,0 +1,62 @@
+SETUP_GUIDE:
+
+BEFORE STARTING:
+1. Install Python, version 3.5 (e.g. 3.5.4). For Windows from https://www.python.org/downloads/windows/
+    During installation choose add Python to path.
+2. Install needed Python modules.
+    You can do this by running the following commands in cmd:
+    pip install tensorflow
+    pip install numpy
+    pip install matplotlib
+    pip install scikit-learn
+3. Download contents of the repo.
+
+TRAIN THE MODEL for one hour:
+1. Add a folder 'hour_X_model' in 'whole_model/', where X is the hour for which you are planning to train
+    the model. Inside the folder add file 'DONE_BY_NAME.txt' so that only you will be doing the training for the hour.
+    Commit this change before proceeding, so others will see.
+2. In files 'bin_nn.py', 'multi_nn.py' and 'reg_nn.py' change the variable HOUR_AHEAD to the value for which hour you
+    are training the model.
+3. Make sure that in all the mentioned files the variables are set as:
+    STORE_DATA_PK = True
+    LOAD_DATA_PK = False
+    LOAD_WEIGHTS = False
+    TRAIN_MODEL = True
+    WRITE_MODEL_WEIGHTS = True
+*. If anything happens during the training (e.g. there is an error or is interrupted) or there are missing files in the
+    output, contact Uros.
+4. In cmd run: python bin_nn.py
+    This can take as long as 24 hours. Look at the outputs printed to see program status.
+    After it is finished, have a look into 'whole_model/hour_X_model/' folder.
+    Add to the file 'DONE_BY_NAME.txt' line: 'bin_nn accuracy: above XX%' (without '') where XX is the
+    'Correct classifications in percentage' displayed in the terminal rounded down to integer.
+    In the folder there should appear:
+        bin_nn_data.pk - do not add to the commit! File to large. Upload it separately to cloud.
+        bin_nn_weights.csv
+        bin_model
+5. In cmd run: python multi_nn.py
+    This should take less then 24 hours. Look at the outputs printed to see program status.
+    After it is finished, have a look into 'whole_model/hour_X_model/' folder.
+    Add to the file 'DONE_BY_NAME.txt' line: 'multi_nn accuracy: above XX%' (without '') where XX is the
+    'Correct classifications in percentage' displayed in the terminal rounded down to integer.
+    In the folder there should appear:
+        multi_nn_data.pk - do not add to the commit! File to large. Upload it separately to cloud.
+        multi_nn_weights.csv
+        multi_model
+6. In cmd run: python multi_nn.py
+    This should take less then 12 hours. Look at the outputs printed to see program status.
+    After it is finished, have a look into 'whole_model/hour_X_model/' folder.
+    Add to the file 'DONE_BY_NAME.txt' line: 'reg_nn MAE = below X.X mm' (without '') where X.X is the
+    'Test results in rainfall amount (mm):  MAE: X.X' displayed in the terminal rounded up to one decimal.
+    In the folder there should appear:
+        reg_nn_data.pk - do not add to the commit! File to large. Upload it separately to cloud.
+        reg_nn_weights.csv
+        reg_model
+7. After all the training is finished, add, commit and push all the gotten files except the big ones!
+
+MAKE PREDICTIONS:
+1.1 in 'prediction.py' choose appropriate number of hours ahead for prediction - all models have to be already trained!
+1.2. Optional change in 'prediction.py' variable ORIGINAL_DATASET to a file with new data for prediction
+      and its evaluation. In this case consider changing STORE_DATA_PK and LOAD_DATA_PK to load the new data and
+      save it to a file for later use.
+2. in cmd run: python prediction.py
